@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8"></meta>
+	<title>글쓰기</title>
+	<script language = "javascript">
+		// 함수 선언 방법 function 함수명(파라미터 파라미터){}
+		function sendData(){
+			// 변수 선언 방법 var 변수명 
+			var title = document.getElementById("title");
+			var author = document.getElementById("author");
+			var content = document.getElementById("content");
+
+			var jsonString = '{ ';
+			jsonString +=' title:"'+title.value+'"';
+			jsonString += ',author:"'+author.value+'"';
+			jsonString += ',content:"'+content.value+'"';	
+			jsonString +='}';
+			
+			document.getElementById("json").value = jsonString;
+			// form을 서버로 전송 
+			document.getElementById("form").submit();
+
+		}
+	</script>
+</head>
+<body>
+
+<h1>글쓰기 </h1>
+<p>새 글을 입력하시오</p>
+<p>
+<form name = "form" id="form" method="POST" action="insert.jsp" onsubmit = "return false;">  
+
+<input type="hidden" name="json" id="json"/>  
+
+제목 : <input type="text" name="title" id = "title" size="50" value="" /><br/>
+작성자 : <input type="text" name="author" id = "author" size="50"/><br/>
+내용 : <textarea name="content" id = "content" cols="50" rows="10"></textarea><br/>
+
+<input type="button" onclick="sendData()" value="전송"/>
+
+
+</form>
+</p>
+
+
+</body>
+</html>
