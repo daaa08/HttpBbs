@@ -17,7 +17,7 @@ import java.util.List;
 public class DataLoader {
 
     public void getData(String url, final CallBack callBack){
-        new AsyncTask<String,Void,List<Bbs>>(){
+        new AsyncTask<String, Void, List<Bbs>>(){
             @Override
             protected List<Bbs> doInBackground(String... params) {
                 // url 가져오기
@@ -25,7 +25,7 @@ public class DataLoader {
                 String result = getDataFromUrl(url);  // jsonString형태로 넘어옴
 
                 Gson gson = new Gson();
-                Data data =  gson.fromJson(result, Data.class);  //result의 String을 gson으로 object 컨버팅
+                Data data = gson.fromJson(result, Data.class);  //result의 String을 gson으로 object 컨버팅
 
                 return data.bbsList;
             }
@@ -33,6 +33,7 @@ public class DataLoader {
             @Override
             protected void onPostExecute(List<Bbs> list) {
                 callBack.setData(list);
+
             }
         }.execute(url);
     }

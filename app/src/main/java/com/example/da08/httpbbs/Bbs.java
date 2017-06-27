@@ -8,6 +8,6 @@ public class Bbs {
     int id;
     String title;
     String author;
-    String content;
-    String date;
+//    String content;
+//    String date;
 }

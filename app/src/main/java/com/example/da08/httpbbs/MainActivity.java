@@ -65,7 +65,7 @@ class BbsAdapter extends RecyclerView.Adapter<BbsAdapter.Holder>{
     public void onBindViewHolder(Holder holder, int position) {
 
         Bbs bbs = list.get(position);
-        holder.id.setText(bbs.id);
+        holder.id.setText(bbs.id+"");
         holder.title.setText(bbs.title);
         holder.author.setText(bbs.author);
     }
