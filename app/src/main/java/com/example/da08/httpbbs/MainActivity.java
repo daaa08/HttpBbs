@@ -1,5 +1,6 @@
 package com.example.da08.httpbbs;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements DataLoader.CallBa
 
     RecyclerView recycler;
     BbsAdapter adapter;
+    Button btnWrite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +26,23 @@ public class MainActivity extends AppCompatActivity implements DataLoader.CallBa
         setContentView(R.layout.activity_main);
 
         recycler = (RecyclerView) findViewById(R.id.recycler);
+        btnWrite = (Button) findViewById(R.id.btnWrite);
+        btnWrite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent;
+                intent = new Intent(MainActivity.this, WriteActivity.class);
+                startActivity(intent);
+            }
+        });
 
         DataLoader loader = new DataLoader();
         loader.getData("http://192.168.10.253:8080/Bbs/List",this); // this는 callback을 구현
         adapter = new BbsAdapter();
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new LinearLayoutManager(this));
+
+
 
     }
 
