@@ -53,14 +53,14 @@ public class DataLoader {
             // outputStream으로 데이터 요청
             con.setRequestMethod("GET");  // http 통신중에 get으로 통신하겠다
 
-            // 2 응담 처리
+            // 2 응답 처리 - HTTP_OK 라는 응답이 오면 데이터를 읽음
             int responseCode = con.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
 
                 BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream())); // 줄단위로 데이터를 읽기위해서 버퍼사용(속도 향상도)
                 String temp = "";
                 while((temp = br.readLine())!= null){
-                    result.append(temp+"\n");
+                    result.append(temp+"\n");  // readLine은 줄바꿈을 무시하므로 뒤에 "" 붙여줌
                 }
 
             }

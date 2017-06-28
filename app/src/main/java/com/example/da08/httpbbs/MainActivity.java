@@ -36,10 +36,14 @@ public class MainActivity extends AppCompatActivity implements DataLoader.CallBa
             }
         });
 
+        // 1. 데이터를 가져오고 (네트워크 , 로컬 DB, 퍄일...)
         DataLoader loader = new DataLoader();
         loader.getData("http://192.168.10.253:8080/Bbs/List",this); // this는 callback을 구현
+        // 2. 가져온 데이터를 아답터에 넣고
         adapter = new BbsAdapter();
+        // 3. 리스트와 아답터를 연결한다.
         recycler.setAdapter(adapter);
+
         recycler.setLayoutManager(new LinearLayoutManager(this));
 
 
@@ -79,7 +83,7 @@ class BbsAdapter extends RecyclerView.Adapter<BbsAdapter.Holder>{
     public void onBindViewHolder(Holder holder, int position) {
 
         Bbs bbs = list.get(position);
-        holder.id.setText(bbs.id+"");
+        holder.id.setText(bbs.id+"");   //  int타입이므로 "" 붙여줘야 함
         holder.title.setText(bbs.title);
         holder.author.setText(bbs.author);
     }
